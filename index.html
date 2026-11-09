@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GAIA სასკოლო AI კლუბები</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: GAIA association look — rich-black/deep-violet bands with violet dash pattern, pill controls, bracket kickers, raised lavender cards. */
+  --ink:#08081e; --muted:#4a4766; --subtle:#615e7f; --paper:#fefeff; --surface:#fefeff; --raised:#f3f2f8; --sunken:#e8e7f0;
+  --line:#e1dfec; --line-strong:#8f8cab; --accent:#7435fd; --accent-hover:#6324e8; --accent-text:#7435fd; --accent-soft:#ece4ff;
+  --brand:#240c66; --black:#08081e; --lavender:#c381e7; --on-brand:#fefeff; --on-brand-muted:#cfcde0;
+  --mentor:#c381e7; --mentor-ink:#7a2fb0; --mentor-soft:#f4e8fb;
+  --signal:#c4253a; --danger:#c4253a; --ok:#0b7a55;
+  --font-display:"Noto Sans Georgian", "Segoe UI", system-ui, sans-serif;
+  --font-body:"Noto Sans Georgian", "Segoe UI", system-ui, sans-serif;
+  --r:24px; --r-sm:14px; --shadow:0 16px 40px #240c6624;
+  --t-NL-bg:#ece4ff; --t-NL-fg:#4b1fb8;
+  --t-TECH-bg:#e2f3ec; --t-TECH-fg:#0b6b4b;
+  --t-CAR-bg:#fdf1d6; --t-CAR-fg:#7a4f00;
+  --t-INFO-bg:#e3e6fb; --t-INFO-fg:#2c3a9e;
+  --t-PHYS-bg:#fde6dc; --t-PHYS-fg:#8a3510;
+  --t-HACK-bg:#7435fd; --t-HACK-fg:#fefeff;
+  --t-LOC-bg:#e8e7f0; --t-LOC-fg:#3a3760;
+  --t-MENT-bg:#f4e8fb; --t-MENT-fg:#7a2fb0;
+  --t-FB-bg:#eeeef3; --t-FB-fg:#4a4766;
+  --hol-bg:#fcecee; --hol-fg:#a3192c;
+  --pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='49.7' height='49.7'%3E%3Cpath d='M1.6 1.6 L21.6 21.6' stroke='%23CD7DEC' stroke-width='2.8' stroke-linecap='round' opacity='.26'/%3E%3C/svg%3E");
+  --symbol:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 182 130'%3E%3Cpath d='M34 130H76.34C84.42 130 90.97 123.45 90.97 115.37C90.97 107.29 84.42 100.74 76.34 100.74H34C31.75 100.74 30.54 99.37 30.02 98.55C29.5 97.73 28.78 96.06 29.74 94.02L58.52 33.01C60.05 29.77 62.86 29.28 64.4 29.28C65.94 29.28 68.75 29.76 70.28 33.01L105.13 106.89C111.76 120.94 126.08 130.02 141.61 130.02C163.85 130.02 181.95 111.93 181.95 89.68V14.63C181.95 6.55 175.4 0 167.32 0C159.24 0 152.69 6.55 152.69 14.63V89.66C152.69 95.76 147.72 100.73 141.62 100.73C137.36 100.73 133.43 98.24 131.61 94.39L96.75 20.51C90.79 7.86 78.39 0 64.4 0C50.41 0 38.02 7.86 32.05 20.51L3.27 81.52C-1.72 92.11 -0.97 104.33 5.3 114.21C11.57 124.1 22.3 130 34 130Z' fill='%23CECCE1'/%3E%3C/svg%3E");
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#fefeff; --muted:#b4b1cc; --subtle:#8a87a8; --paper:#08081e; --surface:#08081e; --raised:#12102f; --sunken:#04040f;
+    --line:#26224a; --line-strong:#6a64a8; --accent-text:#c381e7; --accent-soft:#1b1446; --mentor-ink:#d9a6f2; --mentor-soft:#24124a;
+    --danger:#ff8d8d; --ok:#5ad6a8; --shadow:0 16px 48px #00000080;
+    --t-NL-bg:#1b1446; --t-NL-fg:#cdb6ff; --t-TECH-bg:#0e2b22; --t-TECH-fg:#7fe0bb; --t-CAR-bg:#33270b; --t-CAR-fg:#f2c15b;
+    --t-INFO-bg:#161c48; --t-INFO-fg:#aab4ff; --t-PHYS-bg:#3a1a0e; --t-PHYS-fg:#ffb38f; --t-LOC-bg:#1d1a3d; --t-LOC-fg:#c8c5e6;
+    --t-MENT-bg:#24124a; --t-MENT-fg:#e2b8f7; --t-FB-bg:#1a1838; --t-FB-fg:#c8c5e6; --hol-bg:#2e0f1a; --hol-fg:#ff9aa8;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+    --ink:#fefeff; --muted:#b4b1cc; --subtle:#8a87a8; --paper:#08081e; --surface:#08081e; --raised:#12102f; --sunken:#04040f;
+    --line:#26224a; --line-strong:#6a64a8; --accent-text:#c381e7; --accent-soft:#1b1446; --mentor-ink:#d9a6f2; --mentor-soft:#24124a;
+    --danger:#ff8d8d; --ok:#5ad6a8; --shadow:0 16px 48px #00000080;
+    --t-NL-bg:#1b1446; --t-NL-fg:#cdb6ff; --t-TECH-bg:#0e2b22; --t-TECH-fg:#7fe0bb; --t-CAR-bg:#33270b; --t-CAR-fg:#f2c15b;
+    --t-INFO-bg:#161c48; --t-INFO-fg:#aab4ff; --t-PHYS-bg:#3a1a0e; --t-PHYS-fg:#ffb38f; --t-LOC-bg:#1d1a3d; --t-LOC-fg:#c8c5e6;
+    --t-MENT-bg:#24124a; --t-MENT-fg:#e2b8f7; --t-FB-bg:#1a1838; --t-FB-fg:#c8c5e6; --hol-bg:#2e0f1a; --hol-fg:#ff9aa8;
+    color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.65 var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;text-wrap:balance;margin:0}
+.caps{text-transform:uppercase;font-weight:800;letter-spacing:-.01em}
+a{color:var(--accent-text)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,5vw,56px)}
+
+/* top bar */
+.top{background:color-mix(in srgb,var(--surface) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:72px;flex-wrap:wrap}
+@media (max-width:1180px){.brand .sub{display:none}}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
+.brand{align-items:center}
+.brand img{height:36px;width:auto;display:block}
+.logo-d{display:none!important}
+:root[data-theme="dark"] .logo-l{display:none!important}
+:root[data-theme="dark"] .logo-d{display:block!important}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .logo-l{display:none!important}:root:not([data-theme="light"]) .logo-d{display:block!important}}
+.brand .sub{border-left:1px solid var(--line);padding-left:12px}
+.brand .sub{font-size:13px;color:var(--muted);font-weight:500}
+.nav{display:flex;gap:4px;flex-wrap:wrap;align-items:center;flex:1}
+.nav .group{display:flex;gap:2px;align-items:center}
+.nav .sep{width:1px;height:22px;background:var(--line);margin:0 8px}
+.nav a{text-decoration:none;color:var(--muted);padding:7px 11px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap}
+.nav a:hover{color:var(--ink);background:var(--raised)}
+.nav a.on{color:var(--accent-text);background:var(--accent-soft)}
+.nav a.mentor{color:var(--mentor-ink)}
+.nav a.mentor.on{background:var(--mentor-soft)}
+.nav a.admin{margin-left:auto;background:var(--accent);color:#fefeff;font-weight:600;padding:8px 18px}
+.nav a.admin:hover{background:var(--accent-hover)}
+.nav .glabel{font-size:12px;color:var(--subtle);margin-right:4px}
+
+/* hero: full-bleed dark band with dash pattern */
+.hero{margin-inline:calc(50% - 50vw);padding:72px max(clamp(16px,5vw,56px), calc(50vw - 590px + clamp(16px,5vw,56px))) 64px;background:var(--black) var(--pattern);color:var(--on-brand);margin-bottom:40px}
+.hero{position:relative;overflow:hidden}
+.hero > *{position:relative;z-index:1}
+.hero::after{content:"";position:absolute;right:max(-60px, calc(50vw - 700px));bottom:-40px;width:min(44vw,460px);aspect-ratio:182/130;background:var(--symbol) no-repeat center/contain;opacity:.10;pointer-events:none;z-index:0}
+.hero.slim::after{width:min(30vw,300px);bottom:-60px}
+.hero.mentor{background:var(--brand) var(--pattern)}
+.hero.slim{padding-top:48px;padding-bottom:44px}
+.kicker{display:inline-block;font-size:13px;font-weight:600;color:var(--lavender);letter-spacing:.04em}
+.kicker::before{content:"[ "}
+.kicker::after{content:" ]"}
+.light-kicker{color:var(--accent-text)}
+.hero h1{font-size:clamp(30px,5vw,56px);margin:14px 0 16px;text-transform:uppercase;font-weight:900;letter-spacing:-.015em;color:var(--on-brand)}
+.hero p.lead{max-width:60ch;color:var(--on-brand-muted);font-size:18px;margin:0}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.pillbtn{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid transparent;background:var(--accent);color:#fefeff}
+.pillbtn:hover{background:var(--accent-hover)}
+.pillbtn.ghost{background:transparent;border-color:var(--on-brand-muted);color:var(--on-brand)}
+.pillbtn.ghost:hover{border-color:var(--on-brand);background:#ffffff14}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:36px}
+.stat{border:1px solid #ffffff26;border-radius:var(--r-sm);padding:16px 18px;background:#ffffff0a}
+.stat b{display:block;font:900 32px/1.1 var(--font-display);font-variant-numeric:tabular-nums;color:var(--on-brand)}
+.stat span{font-size:13px;color:var(--on-brand-muted)}
+.hero.mentor .stat b{color:var(--lavender)}
+
+/* section layout */
+.page{display:grid;grid-template-columns:230px 1fr;gap:40px;padding:12px 0 64px}
+.toc{position:sticky;top:96px;align-self:start;display:flex;flex-direction:column;gap:2px;font-size:13.5px}
+.toc a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px}
+.toc a:hover{color:var(--accent-text);background:var(--accent-soft)}
+.sections{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sec{background:var(--raised);border:1px solid var(--line);border-radius:var(--r);padding:28px 32px}
+.sec h2{font-size:24px;margin-bottom:12px;text-transform:uppercase;font-weight:800}
+.md p{margin:0 0 10px;max-width:68ch}
+.md ul,.md ol{margin:0 0 10px;padding-left:22px;max-width:68ch}
+.md li{margin:5px 0}
+.md li::marker{color:var(--accent-text)}
+.md p:last-child,.md ul:last-child,.md ol:last-child{margin-bottom:0}
+@media (max-width:860px){.page{grid-template-columns:1fr}.toc{display:none}.sec{padding:22px}}
+
+/* blocks */
+.block-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:8px 0 18px;flex-wrap:wrap}
+.block-title h2{font-size:clamp(24px,3vw,32px);text-transform:uppercase;font-weight:800;margin-top:6px}
+.more{font-weight:600;text-decoration:none;font-size:14px}
+.more::after{content:" →"}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.upnext{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--raised);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card.click{cursor:pointer;text-align:left;width:100%;transition:box-shadow .15s,border-color .15s}
+.card.click:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+.when{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.pill{display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--muted)}
+.pill.done{color:var(--ok);border-color:currentColor}
+.pill.cancel{color:var(--danger);border-color:currentColor}
+.pill.prog{color:var(--accent-text);border-color:currentColor}
+
+/* calendar */
+.calbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:20px 0 12px}
+.mtabs{display:flex;gap:4px;flex-wrap:wrap}
+.mtabs button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 16px;cursor:pointer;font-size:14px;font-weight:500}
+.mtabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.ftog{border:1px solid transparent;cursor:pointer;opacity:.45}
+.ftog.on{opacity:1}
+.cal-scroll{overflow-x:auto}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(118px,1fr));border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--line);gap:1px;min-width:840px}
+.cal .dow{background:var(--raised);padding:8px 10px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.cal .day{background:var(--surface);min-height:112px;padding:6px 6px 8px;display:flex;flex-direction:column;gap:4px}
+.cal .day.out{background:var(--raised)}
+.cal .day.out .dn{opacity:.35}
+.cal .day.today{box-shadow:inset 0 0 0 2px var(--accent)}
+.cal .dn{font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--muted)}
+.cal .day.hol{background:var(--hol-bg)}
+.cal .hol-name{font-size:11px;color:var(--hol-fg)}
+.ev{display:block;width:100%;text-align:left;border:0;border-radius:6px;padding:3px 6px;font-size:11.5px;line-height:1.35;cursor:pointer;font-weight:500}
+.ev:hover{filter:brightness(.96)}
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+
+/* event list */
+.searchbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:20px 0}
+.searchbar input,.searchbar select{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:10px 18px;min-width:220px}
+.month-h{font:800 15px/1 var(--font-display);text-transform:uppercase;color:var(--accent-text);margin:30px 0 12px;letter-spacing:.02em}
+.elist{display:flex;flex-direction:column;gap:8px}
+.erow{display:grid;grid-template-columns:76px 1fr auto;gap:18px;align-items:start;background:var(--raised);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;cursor:pointer;text-align:left;width:100%}
+.erow:hover{border-color:var(--accent)}
+.dateblk{text-align:center;border-right:1px solid var(--line);padding-right:12px}
+.dateblk b{display:block;font:900 28px/1 var(--font-display);font-variant-numeric:tabular-nums;color:var(--accent-text)}
+.dateblk span{font-size:12px;color:var(--muted)}
+.erow h3{font:600 15.5px/1.4 var(--font-body);margin:4px 0 2px}
+.meta{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+@media (max-width:600px){.erow{grid-template-columns:56px 1fr}.erow .side{grid-column:2}}
+
+/* newsletters */
+.nl{display:grid;grid-template-columns:72px 1fr;gap:18px;background:var(--raised);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.nl .num{font:900 34px/1 var(--font-display);color:var(--accent-text);font-variant-numeric:tabular-nums}
+.nl h3{font:600 17px/1.4 var(--font-body);margin:2px 0 6px}
+.nl dl{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:10px 0 0;font-size:14px}
+.nl dt{color:var(--muted)}
+.nl dd{margin:0}
+@media (max-width:600px){.nl{grid-template-columns:1fr}.nl dl{grid-template-columns:1fr}}
+
+/* mentors */
+.mentor .sec{border-top:3px solid var(--mentor)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.mcard{background:var(--raised);border:1px solid var(--line);border-top:3px solid var(--mentor);border-radius:var(--r);padding:20px}
+.mcard h3{font:600 16px/1.3 var(--font-body);margin:0 0 4px}
+.empty{border:1px dashed var(--line-strong);border-radius:var(--r);padding:26px;color:var(--muted);text-align:center;background:var(--raised)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.step{border-top:3px solid var(--mentor)}
+
+/* admin */
+.atabs{display:flex;gap:4px;flex-wrap:wrap;margin:20px 0 14px;border-bottom:1px solid var(--line)}
+.atabs button{border:0;background:none;padding:10px 14px;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);font-weight:500}
+.atabs button.on{color:var(--accent-text);border-color:var(--accent)}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;background:var(--raised);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 18px;cursor:pointer;font-size:14px;font-weight:600}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fefeff}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn.danger{color:var(--danger)}
+.btn.sm{padding:3px 10px;font-size:12.5px}
+.row-actions{display:flex;gap:6px;white-space:nowrap}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:12px}
+.toolbar .l{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolbar select,.toolbar input,td select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 10px}
+.notice{background:var(--accent-soft);border-radius:var(--r-sm);padding:12px 16px;font-size:14px;margin:16px 0}
+.notice.warn{background:var(--hol-bg);color:var(--hol-fg)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(8,8,30,.6);display:flex;align-items:flex-start;justify-content:center;padding:6vh 16px;z-index:50;overflow:auto}
+.modal[hidden]{display:none}
+.dialog{background:var(--surface);border-radius:var(--r);border:1px solid var(--line);max-width:640px;width:100%;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.dialog h2{font-size:22px;margin:10px 0 12px;text-transform:uppercase;font-weight:800}
+.dialog .x{float:right;border:0;background:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;margin-top:12px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0}
+.form{display:grid;gap:12px;margin-top:8px}
+.form label{display:grid;gap:4px;font-size:13px;color:var(--muted);font-weight:500}
+.form input,.form select,.form textarea{border:1px solid var(--line);background:var(--raised);border-radius:8px;padding:8px 10px;color:var(--ink);font-size:14px}
+.form textarea{min-height:120px;resize:vertical}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-actions{display:flex;gap:8px;justify-content:space-between;margin-top:8px;flex-wrap:wrap}
+.err{color:var(--danger);font-size:13px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+#toast.show{opacity:1}
+footer{background:var(--black);color:#cfcde0;padding:36px 0 48px;font-size:13px;margin-top:40px}
+footer b{color:#fefeff;font:900 20px/1 var(--font-display);display:block;margin-bottom:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#about"><img class="logo-l" src="data:image/png;base64,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" alt="GAIA — Georgian AI Association"><img class="logo-d" src="data:image/png;base64,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" alt="GAIA — Georgian AI Association"><span class="sub">სასკოლო AI კლუბები</span></a>
+    <nav class="nav" id="nav" aria-label="მთავარი ნავიგაცია"></nav>
+  </div>
+</header>
+<main id="app" class="wrap"></main>
+<footer><div class="wrap" id="foot"></div></footer>
+<div class="modal" id="modal" hidden><div class="dialog" role="dialog" aria-modal="true" id="dialog"></div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script id="seed" type="application/json">{"events": [{"id": "INFO-01", "program": "clubs", "type": "INFO", "title": "ფასილიტატორების ონლაინ ორიენტაცია", "date": "2027-01-14", "end": "", "time": "17:00–18:00", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "10 ფასილიტატორი", "description": "Starter Kit-ის განხილვა: წესდება, როლების ჩეკლისტები, სემესტრის Roadmap, პირველი შეხვედრის გეგმა, რეპორტინგის ფორმა.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "10/10 ფასილიტატორი დაესწრო", "status": "დაგეგმილი", "region": ""}, {"id": "MENT-01", "program": "mentors", "type": "MENT", "title": "მენტორების პროგრამის გამოცხადება", "date": "2027-01-18", "end": "", "time": "", "format": "ონლაინ", "place": "GAIA საიტი, სოც. ქსელები", "audience": "ტექ-პროფესიონალები, მე-3–4 კურსის სტუდენტები", "description": "განაცხადის გახსნა საიტზე და სოც. ქსელებში: პროფილი, Code of Conduct, ვალდებულება (აქტივობა ყოველ 2–3 თვეში).", "speaker": "", "owner": "GAIA გუნდი", "kpi": "≥ 20 განაცხადი", "status": "დაგეგმილი", "region": ""}, {"id": "INFO-02", "program": "clubs", "type": "INFO", "title": "GAIA სასკოლო კლუბების გახსნა (Kickoff)", "date": "2027-01-21", "end": "", "time": "18:00–19:00", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "ფასილიტატორები, კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "პროგრამის გაცნობა ყველა კლუბისთვის: სემესტრის რიტმი, ნიუსლეთერი, ონლაინ ტრენინგები, რეგიონალური შეხვედრები და ჰაკათონი.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "10/10 სკოლა ჩართული, დასწრების რაოდენობა", "status": "დაგეგმილი", "region": ""}, {"id": "TECH-01", "program": "clubs", "type": "TECH", "title": "AI-ის რუკა: როგორ სწავლობს მანქანა", "date": "2027-02-04", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "რა არის AI, ML და ღრმა სწავლება; პრაქტიკა Teachable Machine-ით — პირველი მოდელი 15 წუთში.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "LOC-01", "program": "clubs", "type": "LOC", "title": "პირველი ლოკალური შეხვედრის ვადა", "date": "2027-02-12", "end": "", "time": "", "format": "ფიზიკური", "place": "სკოლა", "audience": "კლუბის წევრები", "description": "კლუბი ატარებს პირველ შეხვედრას „პირველი შეხვედრის“ გეგმით: გაცნობა, როლების განაწილება, წევრების რეგისტრაცია.", "speaker": "", "owner": "კლუბის ლიდერი + ფასილიტატორი", "kpi": "10/10 კლუბმა ჩაატარა; წევრების სია მიღებულია", "status": "დაგეგმილი", "region": ""}, {"id": "TECH-02", "program": "clubs", "type": "TECH", "title": "მონაცემები: შეგროვება, გასუფთავება, ვიზუალიზაცია", "date": "2027-02-18", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "Google Colab-ის გაცნობა, ცხრილებთან მუშაობა Pandas-ით, მარტივი გრაფიკები.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "LOC-02", "program": "clubs", "type": "LOC", "title": "შეჯამება: თებერვალი — ფასილიტატორის რეპორტის ვადა", "date": "2027-02-26", "end": "", "time": "", "format": "ონლაინ ფორმა", "place": "Google Form", "audience": "ფასილიტატორები", "description": "თებერვალში ჩატარებული ლოკალური სამუშაო შეხვედრის დასტური (ფოტო + მოკლე ფორმა: თარიღი, მონაწილეები, რა დაამუშავეს).", "speaker": "", "owner": "ფასილიტატორი", "kpi": "10/10 რეპორტი ვადაში; ≥ 1 შეხვედრა თითო კლუბზე", "status": "დაგეგმილი", "region": ""}, {"id": "MENT-02", "program": "mentors", "type": "MENT", "title": "მენტორები საიტზე + სპიკერის მოთხოვნის ფორმა", "date": "2027-03-01", "end": "", "time": "", "format": "ონლაინ", "place": "GAIA საიტი", "audience": "ფასილიტატორები, მენტორები", "description": "შერჩეული მენტორები ქვეყნდება საიტზე, როგორც კომუნის აქტიური მხარდამჭერები. ფასილიტატორებს ეხსნებათ სპიკერის მოთხოვნის ფორმა.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "≥ 10 აქტიური მენტორი", "status": "დაგეგმილი", "region": ""}, {"id": "MENT-03", "program": "mentors", "type": "MENT", "title": "მენტორების ონლაინ ორიენტაცია", "date": "2027-03-02", "end": "", "time": "19:00–20:00", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "შერჩეული მენტორები", "description": "პროგრამის წესები, ქცევის კოდექსი, მოთხოვნების პროცესი, ჰაკათონის ჟიურიში მონაწილეობა.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "ორიენტაცია გაიარა ყველა მენტორმა", "status": "დაგეგმილი", "region": ""}, {"id": "TECH-03", "program": "clubs", "type": "TECH", "title": "პირველი ML მოდელი: კლასიფიკაცია", "date": "2027-03-04", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "scikit-learn-ით კლასიფიკატორის აწყობა, train/test გაყოფა, სიზუსტის შეფასება.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "CAR-01", "program": "clubs", "type": "CAR", "title": "კარიერული გზები AI-ში", "date": "2027-03-18", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "რა პროფესიები არსებობს (ML ინჟინერი, Data Scientist, პროდუქტის მენეჯერი, მკვლევარი) და როგორ დავიწყოთ სკოლიდანვე.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "FB-01", "program": "clubs", "type": "FB", "title": "შუალედური გამოკითხვა", "date": "2027-03-22", "end": "2027-04-02", "time": "", "format": "ონლაინ ფორმა", "place": "Google Form", "audience": "ფასილიტატორები, კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "მოკლე კითხვარი ლიდერებისა და წევრებისთვის: რა მუშაობს, რა არის რთული ან მოსაწყენი. შედეგები გამოიყენება რეგიონალური შეხვედრების დაგეგმვაში.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "≥ 60% მონაწილის პასუხი", "status": "დაგეგმილი", "region": ""}, {"id": "LOC-03", "program": "clubs", "type": "LOC", "title": "შეჯამება: მარტი — ფასილიტატორის რეპორტის ვადა", "date": "2027-03-26", "end": "", "time": "", "format": "ონლაინ ფორმა", "place": "Google Form", "audience": "ფასილიტატორები", "description": "მარტში ჩატარებული ლოკალური სამუშაო შეხვედრის დასტური (ფოტო + მოკლე ფორმა: თარიღი, მონაწილეები, რა დაამუშავეს).", "speaker": "", "owner": "ფასილიტატორი", "kpi": "10/10 რეპორტი ვადაში; ≥ 1 შეხვედრა თითო კლუბზე", "status": "დაგეგმილი", "region": ""}, {"id": "TECH-04", "program": "clubs", "type": "TECH", "title": "ნეირონული ქსელები და კომპიუტერული ხედვა", "date": "2027-04-01", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "ნეირონული ქსელის ინტუიცია, როგორ „ხედავს“ კომპიუტერი სურათს; ლაივ-დემო მზა მოდელით.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "PHYS-01", "program": "clubs", "type": "PHYS", "title": "რეგიონალური შეხვედრა — სამცხე-ჯავახეთი", "date": "2027-04-10", "end": "", "time": "11:00–16:00", "format": "ფიზიკური", "place": "ახალციხე (შესათანხმებელი)", "audience": "რეგიონის 5 სკოლის კლუბები + ფასილიტატორები", "description": "GAIA-ს გუნდის ვიზიტი: კლუბების პრეზენტაციები, მენტორის ვორქშოპი, შერეული გუნდების მინი-გამოწვევა, ჰაკათონის ანონსი.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "მონაწილეთა რაოდენობა; 5/5 სკოლა წარმოდგენილი", "status": "დაგეგმილი", "region": "სამცხე-ჯავახეთი"}, {"id": "TECH-05", "program": "clubs", "type": "TECH", "title": "ენობრივი მოდელები და პრომპტ-ინჟინერია", "date": "2027-04-15", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "როგორ მუშაობს LLM, კარგი პრომპტის სტრუქტურა, ჰალუცინაციები და შემოწმება.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "PHYS-02", "program": "clubs", "type": "PHYS", "title": "რეგიონალური შეხვედრა — სამეგრელო", "date": "2027-04-24", "end": "", "time": "11:00–16:00", "format": "ფიზიკური", "place": "ზუგდიდი (შესათანხმებელი)", "audience": "რეგიონის 5 სკოლის კლუბები + ფასილიტატორები", "description": "იგივე ფორმატი, რაც სამცხე-ჯავახეთში.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "მონაწილეთა რაოდენობა; 5/5 სკოლა წარმოდგენილი", "status": "დაგეგმილი", "region": "სამეგრელო"}, {"id": "CAR-02", "program": "clubs", "type": "CAR", "title": "სკოლიდან ტექ-კარიერამდე: სტუდენტების გამოცდილება", "date": "2027-04-29", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "სტუდენტები და ახალგაზრდა პროფესიონალები უზიარებენ გზას: უნივერსიტეტი, სტაჟირება, ოლიმპიადები, პირველი სამსახური.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "LOC-04", "program": "clubs", "type": "LOC", "title": "შეჯამება: აპრილი — ფასილიტატორის რეპორტის ვადა", "date": "2027-04-29", "end": "", "time": "", "format": "ონლაინ ფორმა", "place": "Google Form", "audience": "ფასილიტატორები", "description": "აპრილში ჩატარებული ლოკალური სამუშაო შეხვედრის დასტური (ფოტო + მოკლე ფორმა: თარიღი, მონაწილეები, რა დაამუშავეს).", "speaker": "", "owner": "ფასილიტატორი", "kpi": "10/10 რეპორტი ვადაში; ≥ 1 შეხვედრა თითო კლუბზე", "status": "დაგეგმილი", "region": ""}, {"id": "HACK-00", "program": "clubs", "type": "HACK", "title": "ჰაკათონის რეგისტრაციის გახსნა", "date": "2027-05-10", "end": "2027-05-31", "time": "", "format": "ონლაინ ფორმა", "place": "Google Form", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "გუნდების რეგისტრაცია (3–5 მოსწავლე, ერთი სკოლიდან). ვადა: 31 მაისი.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "≥ 2 გუნდი თითო სკოლიდან", "status": "დაგეგმილი", "region": ""}, {"id": "TECH-06", "program": "clubs", "type": "TECH", "title": "No-code პროტოტიპირება", "date": "2027-05-13", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "იდეიდან პროტოტიპამდე კოდის გარეშე: Custom GPT, Glide, n8n ავტომატიზაცია. მზადება ჰაკათონისთვის.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "TECH-07", "program": "clubs", "type": "TECH", "title": "Pitch-ის უნარები + ჰაკათონის ბრიფინგი", "date": "2027-05-27", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "როგორ წარვადგინოთ იდეა 3 წუთში; ჰაკათონის წესები, შეფასების რუბრიკა, დღის წესრიგი.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "LOC-05", "program": "clubs", "type": "LOC", "title": "შეჯამება: მაისი — ფასილიტატორის რეპორტის ვადა", "date": "2027-05-28", "end": "", "time": "", "format": "ონლაინ ფორმა", "place": "Google Form", "audience": "ფასილიტატორები", "description": "მაისში ჩატარებული ლოკალური სამუშაო შეხვედრის დასტური (ფოტო + მოკლე ფორმა: თარიღი, მონაწილეები, რა დაამუშავეს).", "speaker": "", "owner": "ფასილიტატორი", "kpi": "10/10 რეპორტი ვადაში; ≥ 1 შეხვედრა თითო კლუბზე", "status": "დაგეგმილი", "region": ""}, {"id": "HACK-01", "program": "clubs", "type": "HACK", "title": "სასკოლო ჰაკათონი — სამეგრელო", "date": "2027-06-05", "end": "", "time": "10:00–18:00", "format": "ფიზიკური", "place": "ზუგდიდი (შესათანხმებელი)", "audience": "რეგისტრირებული გუნდები", "description": "1-დღიანი ჰაკათონი: გამოწვევის გაცნობა, გუნდური მუშაობა მენტორებთან, პროტოტიპი, 3-წუთიანი Pitch, ჟიური, დაჯილდოება.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "გუნდების რაოდენობა; პროტოტიპების რაოდენობა", "status": "დაგეგმილი", "region": "სამეგრელო"}, {"id": "CAR-03", "program": "clubs", "type": "CAR", "title": "ტექ-ინდუსტრიის პანელი: რა გავაკეთოთ ზაფხულში", "date": "2027-06-10", "end": "", "time": "18:00–19:15", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "კლუბის ლიდერები, საორგანიზაციო გუნდები, წევრები", "description": "პრაქტიკოსების პანელი: ზაფხულის სკოლები, ონლაინ კურსები, ოლიმპიადები, მოხალისეობა და სტაჟირება.", "speaker": "GAIA / მოწვეული მენტორი — დასადასტურებელი", "owner": "GAIA გუნდი", "kpi": "დასწრება (სკოლის მიხედვით), კმაყოფილების ქულა", "status": "დაგეგმილი", "region": ""}, {"id": "HACK-02", "program": "clubs", "type": "HACK", "title": "სასკოლო ჰაკათონი — სამცხე-ჯავახეთი", "date": "2027-06-12", "end": "", "time": "10:00–18:00", "format": "ფიზიკური", "place": "ახალციხე (შესათანხმებელი)", "audience": "რეგისტრირებული გუნდები", "description": "იგივე ფორმატი, რაც სამეგრელოში.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "გუნდების რაოდენობა; პროტოტიპების რაოდენობა", "status": "დაგეგმილი", "region": "სამცხე-ჯავახეთი"}, {"id": "FB-02", "program": "clubs", "type": "FB", "title": "საბოლოო უკუკავშირის გამოკითხვა", "date": "2027-06-14", "end": "2027-06-21", "time": "", "format": "ონლაინ ფორმა", "place": "Google Form", "audience": "ყველა მონაწილე", "description": "კითხვარი მოსწავლეებისთვის, ფასილიტატორებისთვის და მენტორებისთვის: პროგრამის შეფასება და რეკომენდაციები.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "≥ 60% პასუხი", "status": "დაგეგმილი", "region": ""}, {"id": "INFO-03", "program": "clubs", "type": "INFO", "title": "შემაჯამებელი შეხვედრა ფასილიტატორებთან", "date": "2027-06-25", "end": "", "time": "17:00–18:30", "format": "ონლაინ", "place": "Zoom / Google Meet", "audience": "ფასილიტატორები, მენტორები", "description": "სემესტრის შედეგები, გამოკითხვის მიგნებები, მადლობის სერტიფიკატები საუკეთესო ფასილიტატორებსა და მენტორებს, შემდეგი სემესტრის გეგმა.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "10/10 ფასილიტატორი", "status": "დაგეგმილი", "region": ""}, {"id": "FB-03", "program": "clubs", "type": "FB", "title": "საპილოტე სემესტრის საბოლოო ანგარიში", "date": "2027-06-30", "end": "", "time": "", "format": "შიდა", "place": "—", "audience": "GAIA გუნდი, პარტნიორები", "description": "მეტრიკები: რეპორტები, დასწრება ონლაინ ტრენინგებზე, რეგიონალურ შეხვედრებზე მონაწილეობა, ჰაკათონის გუნდები, უკუკავშირი.", "speaker": "", "owner": "GAIA გუნდი", "kpi": "ანგარიში დასრულებულია", "status": "დაგეგმილი", "region": ""}], "newsletters": [{"id": "NL-01", "n": 1, "date": "2027-01-25", "title": "კეთილი იყოს თქვენი მობრძანება GAIA კლუბებში!", "theme": "გაშვება და ორიენტაცია", "resource": "სემესტრის რუკა, კლუბის როლები და როგორ ვიმუშაოთ ორშაბათის მასალებზე.", "olympiad": "მოდული 1: რა არის AI — ისტორია და ძირითადი ცნებები", "announcements": "ონლაინ ტრენინგი #1 (4 თებ); პირველი ლოკალური შეხვედრის ვადა 12 თებ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-02", "n": 2, "date": "2027-02-01", "title": "როგორ სწავლობს მანქანა?", "theme": "AI და მონაცემების საფუძვლები", "resource": "ვიდეო და სტატია მანქანური სწავლების შესახებ, Teachable Machine-ის გზამკვლევი.", "olympiad": "მოდული 2: Python I — ცვლადები, ტიპები, ციკლები", "announcements": "ონლაინ ტრენინგი #1 — ხუთშაბათს, 18:00", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-03", "n": 3, "date": "2027-02-08", "title": "მონაცემები ყველგანაა", "theme": "AI და მონაცემების საფუძვლები", "resource": "სად ვიპოვოთ ღია მონაცემები (Kaggle, data.gov.ge), რა არის კარგი მონაცემთა ნაკრები.", "olympiad": "მოდული 3: Python II — ფუნქციები, სიები, NumPy", "announcements": "პირველი ლოკალური შეხვედრის ვადა — პარასკევი, 12 თებ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-04", "n": 4, "date": "2027-02-15", "title": "Google Colab: ლაბორატორია ბრაუზერში", "theme": "AI და მონაცემების საფუძვლები", "resource": "Colab-ის გაცნობა ნაბიჯ-ნაბიჯ, მზა ნოუთბუქი კლუბისთვის.", "olympiad": "მოდული 4: მონაცემთა ანალიზი — Pandas და ვიზუალიზაცია", "announcements": "ონლაინ ტრენინგი #2 (18 თებ)", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-05", "n": 5, "date": "2027-02-22", "title": "მიკერძოება მონაცემებში", "theme": "AI და მონაცემების საფუძვლები", "resource": "როდის „ტყუის“ მონაცემი: მაგალითები და სადისკუსიო კითხვები კლუბისთვის.", "olympiad": "მოდული 5: ML-ის საფუძვლები — supervised/unsupervised, train/test", "announcements": "თებერვლის რეპორტის ვადა — 26 თებ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-06", "n": 6, "date": "2027-03-01", "title": "გაიცანით GAIA-ს მენტორები", "theme": "მანქანური სწავლება პრაქტიკაში", "resource": "მენტორების სია საიტზე და როგორ მოითხოვოს ფასილიტატორმა სპიკერი.", "olympiad": "მოდული 6: წრფივი რეგრესია და შეცდომის ფუნქცია", "announcements": "ონლაინ ტრენინგი #3 (4 მარ); სპიკერის მოთხოვნის ფორმა გაიხსნა", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-07", "n": 7, "date": "2027-03-09", "title": "კლასიფიკაცია ყოველდღიურობაში", "theme": "მანქანური სწავლება პრაქტიკაში", "resource": "სპამ-ფილტრიდან სამედიცინო დიაგნოსტიკამდე: სად ვხვდებით კლასიფიკაციას.", "olympiad": "მოდული 7: კლასიფიკაცია — kNN, გადაწყვეტილების ხეები", "announcements": "8 მარტი დასვენებაა — ნიუსლეთერი იგზავნება სამშაბათს", "link": "", "status": "დაგეგმილი", "note": "დაგეგმილი იყო 08.03 (დასვენების დღე)"}, {"id": "NL-08", "n": 8, "date": "2027-03-15", "title": "როგორ შევაფასოთ მოდელი", "theme": "მანქანური სწავლება პრაქტიკაში", "resource": "სიზუსტე, precision/recall და overfitting მარტივი მაგალითებით.", "olympiad": "მოდული 8: მოდელის შეფასება და overfitting", "announcements": "კარიერული შეხვედრა #1 (18 მარ)", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-09", "n": 9, "date": "2027-03-22", "title": "თქვენი აზრი გვჭირდება", "theme": "მანქანური სწავლება პრაქტიკაში", "resource": "შუალედური გამოკითხვა + სემესტრის პირველი ნახევრის საუკეთესო მომენტები კლუბებიდან.", "olympiad": "მოდული 9: კლასტერიზაცია — k-means", "announcements": "შუალედური გამოკითხვა (ვადა 2 აპრ); მარტის რეპორტი 26 მარ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-10", "n": 10, "date": "2027-03-29", "title": "ნეირონი, ქსელი, ტვინი", "theme": "მანქანური სწავლება პრაქტიკაში", "resource": "ვიზუალური ახსნა: როგორ მუშაობს ნეირონული ქსელი (TensorFlow Playground).", "olympiad": "მოდული 10: ნეირონული ქსელები I — პერცეპტრონი, აქტივაციები", "announcements": "ონლაინ ტრენინგი #4 (1 აპრ); რეგიონალური შეხვედრის რეგისტრაცია", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-11", "n": 11, "date": "2027-04-05", "title": "როგორ „ხედავს“ კომპიუტერი", "theme": "ნეირონული ქსელები, ხედვა და ენა + რეგიონალური შეხვედრები", "resource": "კომპიუტერული ხედვის მაგალითები და უფასო ხელსაწყოები.", "olympiad": "მოდული 11: ნეირონული ქსელები II — გრადიენტული დაშვება", "announcements": "რეგიონალური შეხვედრა: სამცხე-ჯავახეთი, შაბათი 10 აპრ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-12", "n": 12, "date": "2027-04-12", "title": "რეგიონალური შეხვედრის შეჯამება", "theme": "ნეირონული ქსელები, ხედვა და ენა + რეგიონალური შეხვედრები", "resource": "ფოტოები და მიგნებები სამცხე-ჯავახეთიდან; CNN-ის ვიზუალური ახსნა.", "olympiad": "მოდული 12: კომპიუტერული ხედვა I — სურათი როგორც მონაცემი, კონვოლუცია", "announcements": "ონლაინ ტრენინგი #5 (15 აპრ)", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-13", "n": 13, "date": "2027-04-19", "title": "მანქანა, რომელიც კითხულობს", "theme": "ნეირონული ქსელები, ხედვა და ენა + რეგიონალური შეხვედრები", "resource": "ენის დამუშავება (NLP): როგორ იქცევა ტექსტი რიცხვებად.", "olympiad": "მოდული 13: კომპიუტერული ხედვა II — CNN და transfer learning", "announcements": "რეგიონალური შეხვედრა: სამეგრელო, შაბათი 24 აპრ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-14", "n": 14, "date": "2027-04-26", "title": "სამეგრელოს შეხვედრის შეჯამება", "theme": "ნეირონული ქსელები, ხედვა და ენა + რეგიონალური შეხვედრები", "resource": "ფოტოები და მიგნებები სამეგრელოდან; როგორ მოვემზადოთ ჰაკათონისთვის.", "olympiad": "მოდული 14: ენის დამუშავება I — ტოკენიზაცია, ემბედინგები", "announcements": "კარიერული შეხვედრა #2 (29 აპრ); აპრილის რეპორტი 29 აპრ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-15", "n": 15, "date": "2027-05-04", "title": "როგორ მუშაობს ChatGPT", "theme": "GenAI, ეთიკა და ჰაკათონისთვის მზადება", "resource": "ტრანსფორმერები ინტუიციურად; პრომპტის სავარჯიშოები კლუბისთვის.", "olympiad": "მოდული 15: ენის დამუშავება II — ტრანსფორმერები და LLM", "announcements": "3 მაისი დასვენებაა — ნიუსლეთერი იგზავნება სამშაბათს", "link": "", "status": "დაგეგმილი", "note": "დაგეგმილი იყო 03.05 (დასვენების დღე)"}, {"id": "NL-16", "n": 16, "date": "2027-05-10", "title": "ჰაკათონის რეგისტრაცია გაიხსნა!", "theme": "GenAI, ეთიკა და ჰაკათონისთვის მზადება", "resource": "ჰაკათონის წესები, გუნდის შედგენა, შეფასების რუბრიკა; გენერაციული AI-ის მაგალითები.", "olympiad": "მოდული 16: გენერაციული AI", "announcements": "რეგისტრაცია 31 მაისამდე; ონლაინ ტრენინგი #6 (13 მაი)", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-17", "n": 17, "date": "2027-05-17", "title": "პასუხისმგებლიანი AI", "theme": "GenAI, ეთიკა და ჰაკათონისთვის მზადება", "resource": "ეთიკა, კონფიდენციალურობა და უსაფრთხოება: საქეისო დისკუსია კლუბისთვის.", "olympiad": "მოდული 17: AI ეთიკა, მიკერძოება, უსაფრთხოება", "announcements": "ჰაკათონის გუნდები: იდეების წინასწარი შტურმი", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-18", "n": 18, "date": "2027-05-24", "title": "იდეიდან პროტოტიპამდე", "theme": "GenAI, ეთიკა და ჰაკათონისთვის მზადება", "resource": "No-code ხელსაწყოების ჩეკლისტი და სტუდენტური ჰაკათონების წარმატებული პროექტების მაგალითები.", "olympiad": "მოდული 18: საოლიმპიადო ამოცანების ნაკრები I", "announcements": "ონლაინ ტრენინგი #7: Pitch + ჰაკათონის ბრიფინგი (27 მაი); მაისის რეპორტი 28 მაი", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-19", "n": 19, "date": "2027-05-31", "title": "ჰაკათონის კვირა", "theme": "GenAI, ეთიკა და ჰაკათონისთვის მზადება", "resource": "საბოლოო ინსტრუქცია: დღის წესრიგი, რა წამოვიღოთ, ტრანსპორტი.", "olympiad": "მოდული 19: საოლიმპიადო ამოცანების ნაკრები II + შემდეგი ნაბიჯები", "announcements": "რეგისტრაციის ბოლო დღე — 31 მაისი; ჰაკათონი სამეგრელოში 5 ივნ", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-20", "n": 20, "date": "2027-06-07", "title": "სამეგრელოს ჰაკათონის გამარჯვებულები", "theme": "ჰაკათონები და სემესტრის დახურვა", "resource": "გამარჯვებული გუნდები, პროტოტიპები და ფოტოები.", "olympiad": "—", "announcements": "ჰაკათონი სამცხე-ჯავახეთში 12 ივნ; კარიერული შეხვედრა #3 (10 ივნ)", "link": "", "status": "დაგეგმილი", "note": ""}, {"id": "NL-21", "n": 21, "date": "2027-06-14", "title": "მადლობა, GAIA კლუბებო!", "theme": "ჰაკათონები და სემესტრის დახურვა", "resource": "სემესტრის შეჯამება, სამცხე-ჯავახეთის გამარჯვებულები, ზაფხულის რესურსები.", "olympiad": "—", "announcements": "საბოლოო გამოკითხვა (ვადა 21 ივნ)", "link": "", "status": "დაგეგმილი", "note": ""}], "pages": [{"id": "about-01", "page": "about", "order": 1, "title": "რა არის GAIA სასკოლო კლუბები", "body": "GAIA სასკოლო კლუბები არის ხელოვნური ინტელექტის კლუბების დეცენტრალიზებული ქსელი საქართველოს მაღალი კლასების მოსწავლეებისთვის. პროგრამა ზრდის ციფრულ წიგნიერებასა და ტექნოლოგიურ უნარებს რეგიონებში.\n\nპროგრამა სკოლებში კვალიფიციური ტექნოლოგიური კადრების ნაკლებობას ახლებურად ჭრის: ლოჯისტიკა და ტექნიკური ექსპერტიზა ერთმანეთისგან გამიჯნულია.\n\n- **მასწავლებელი (ფასილიტატორი)** ორგანიზატორია და უსაფრთხო სამუშაო სივრცეს უზრუნველყოფს. ტექნიკური ცოდნა არ მოეთხოვება.\n- **მოსწავლეები (კლუბის ლიდერები)** თავად მართავენ კლუბს, ირჩევენ თემატიკას და უძღვებიან აქტივობებს.\n- **პროფესიონალი ექსპერტები (GAIA-ს მენტორები)** მოხალისეობრივად ერთვებიან ცენტრალური პლატფორმის გავლით და ტექნიკურ ცოდნას უზიარებენ მოსწავლეებს."}, {"id": "about-02", "page": "about", "order": 2, "title": "მიზნები", "body": "- ციფრული წიგნიერებისა და AI-ის საბაზისო ცოდნის გავრცელება რეგიონების სკოლებში\n- სკოლაში ტექნოლოგიური კადრის ნაკლებობის კომპენსირება მენტორებისა და ცენტრალური მასალების მეშვეობით\n- მოსწავლეების ლიდერობისა და თვითორგანიზების უნარების განვითარება\n- საოლიმპიადო მომზადება AI მიმართულებით\n- ნასწავლის გამოყენება რეალური იდეების პროტოტიპირებისთვის სემესტრის ბოლოს ჰაკათონზე\n- პილოტიდან გაზომვადი მონაცემების მიღება მასშტაბირებისთვის"}, {"id": "about-03", "page": "about", "order": 3, "title": "საპილოტე სემესტრი", "body": "პირველ, საპილოტე სემესტრში (გაზაფხული 2027) პროგრამაში მონაწილეობს **10 სკოლა 2 მიზნობრივი რეგიონიდან**: სამცხე-ჯავახეთი და სამეგრელო. სემესტრი 21 იანვარს, Kickoff-ით იწყება და ივნისის ჰაკათონებით სრულდება."}, {"id": "about-04", "page": "about", "order": 4, "title": "კლუბის სტრუქტურა", "body": "- **ფასილიტატორი (მასწავლებელი):** GAIA-ს ოფიციალური საკონტაქტო პირი. აგვარებს ლოჯისტიკას, ოთახის დაჯავშნას, უსაფრთხოებას და რეპორტინგს. ტექნიკური ცოდნა არ მოეთხოვება.\n- **კლუბის ლიდერი (მოსწავლე):** მთავარი მამოძრავებელი ძალა და ხედვის ავტორი.\n- **საორგანიზაციო გუნდი (2–4 მოსწავლე):** განაგებს ახალი წევრების მოზიდვასა და ღონისძიებების დაგეგმვას.\n- **წევრები:** მოსწავლეები, რომლებიც ყოველკვირეულ და ყოველთვიურ აქტივობებში მონაწილეობენ."}, {"id": "about-05", "page": "about", "order": 5, "title": "პროგრამის კომპონენტები და რიტმი", "body": "- **ორშაბათის ნიუსლეთერი:** ყოველ ორშაბათს GAIA აგზავნის ახალ მასალას და რესურსებს, რომლებსაც კლუბი ერთად გადის.\n- **ყოველკვირეული საოლიმპიადო მასალა:** კვირის მოდული საოლიმპიადო კურსიდან, იგივე ნიუსლეთერის ნაწილად.\n- **ონლაინ ტრენინგები (ყოველ 2 კვირაში):** ცენტრალიზებული ვირტუალური სესიები ტექნიკურ და კარიერულ თემებზე, ხუთშაბათობით 18:00-ზე.\n- **ლოკალური სამუშაო შეხვედრა (თვეში მინიმუმ 1):** კლუბი სკოლაში ამუშავებს მიღებულ მასალებს.\n- **რეგიონალური შეხვედრა:** სემესტრის შუაში GAIA-ს გუნდი ორივე რეგიონს ფიზიკურად სტუმრობს.\n- **ფინალური ჰაკათონები:** სემესტრის ბოლოს მოსწავლეები ნასწავლს რეალური იდეების პროტოტიპირებისთვის იყენებენ."}, {"id": "about-06", "page": "about", "order": 6, "title": "Starter Kit კლუბებისთვის", "body": "სასტარტო ნაკრები ციფრული პაკეტია, რომელიც შერჩეულ 10 სკოლას 11 იანვარს ეგზავნება.\n\n- მისალმების წერილი და წესდება (Charter) GAIA-ს ბრენდინგით\n- როლების ჩეკლისტები: 1-გვერდიანი დოკუმენტები ფასილიტატორისა და ლიდერისთვის\n- სემესტრის საგზაო რუკა: ონლაინ ტრენინგები, რეგიონალური ვიზიტები და ჰაკათონის თარიღები\n- „პირველი შეხვედრის“ გეგმა: ნაბიჯ-ნაბიჯ დღის წესრიგი"}, {"id": "about-07", "page": "about", "order": 7, "title": "რეპორტინგი", "body": "- **ფასილიტატორის რეპორტი:** ყოველი თვის ბოლო პარასკევს დასტური, რომ მინიმუმ 1 სამუშაო შეხვედრა ჩატარდა\n- **ჩართულობის აღრიცხვა:** დასწრება ყოველ ონლაინ ტრენინგზე\n- **რეგიონალურ შეხვედრაზე მონაწილეობა**\n- **ჰაკათონში მონაწილეობა:** რამდენმა გუნდმა მიიღო მონაწილეობა"}, {"id": "about-08", "page": "about", "order": 8, "title": "ჰაკათონი: შეფასება და ჯილდოები", "body": "ფასდება ჰაკათონის დღეს შექმნილი იდეა და პროტოტიპი.\n\n- **იდეის ინოვაციურობა და რელევანტურობა — 30%**\n- **AI / ტექნოლოგიური კომპონენტის გამოყენება — 30%**\n- **პროტოტიპი — 20%**\n- **პრეზენტაცია / Pitch — 20%**\n\nგამარჯვებულებს სიმბოლური პრიზები და სერტიფიკატები გადაეცემათ. მადლობის სერტიფიკატებს საუკეთესო ფასილიტატორები და მენტორები მიიღებენ."}, {"id": "about-09", "page": "about", "order": 9, "title": "სემესტრი ეტაპებად", "body": "- **იანვარი–თებერვალი — გაშვება:** Starter Kit, ორიენტაცია, Kickoff, პირველი ლოკალური შეხვედრა, ნიუსლეთერი და ონლაინ ტრენინგები\n- **მარტი–აპრილი — სწავლა და რეგიონალური ვიზიტები:** მენტორების ჩართვა, შუალედური გამოკითხვა, შეხვედრები სამცხე-ჯავახეთსა და სამეგრელოში\n- **მაისი — ჰაკათონისთვის მზადება:** no-code პროტოტიპირება, Pitch-ის უნარები, გუნდების რეგისტრაცია\n- **ივნისი — ჰაკათონები და დახურვა:** ორი რეგიონული ჰაკათონი, საბოლოო გამოკითხვა, შემაჯამებელი შეხვედრა"}, {"id": "mentors-01", "page": "mentors", "order": 1, "title": "რა არის GAIA მენტორების პროგრამა", "body": "GAIA-ს მენტორების პროგრამა სასკოლო კლუბებისგან დამოუკიდებელი, პროფესიონალთა მოხალისეობრივი ქსელია. ის ტექნოლოგიური სფეროს ექსპერტებს საქართველოს სკოლებთან აკავშირებს, რათა მოსწავლეებმა პრაქტიკული ცოდნა და პროფესიული ხელმძღვანელობა მიიღონ.\n\nშერჩეული მენტორები GAIA-ს საიტზე GAIA-ს კომუნის აქტიურ მხარდამჭერებად ქვეყნდებიან."}, {"id": "mentors-02", "page": "mentors", "order": 2, "title": "ვინ შეიძლება გახდეს მენტორი", "body": "- პროგრამული უზრუნველყოფის ინჟინრები და მონაცემთა მეცნიერები\n- პროდუქტის მენეჯერები და AI მკვლევრები\n- ტექნოლოგიური ეთიკის სპეციალისტები\n- უნივერსიტეტის მე-3 და მე-4 კურსის გამორჩეული სტუდენტები"}, {"id": "mentors-03", "page": "mentors", "order": 3, "title": "შერჩევის პროცესი", "body": "- **კომუნიკაციის უნარი:** 2-წუთიანი ვიდეო ან მოკლე გასაუბრება. მენტორს რთული ტექნიკური ცნების მოსწავლისთვის გასაგებ ქართულ ენაზე ახსნა უნდა შეეძლოს.\n- **უსაფრთხოება:** არასრულწლოვნებთან მუშაობის გამო მენტორი ქცევის კოდექსს (Code of Conduct) აწერს ხელს. იდენტობა კორპორატიული ან საუნივერსიტეტო რეკომენდაციით მოწმდება.\n- **პროფილი:** მენტორი უთითებს ექსპერტიზას (მაგ. Computer Vision, AI ეთიკა, No-code ხელსაწყოები) და ჩართულობის ფორმატს (დისტანციური ან ფიზიკური ვიზიტი რეგიონში)."}, {"id": "mentors-04", "page": "mentors", "order": 4, "title": "როგორ უკავშირდება მენტორი სკოლას", "body": "1. კლუბის ფასილიტატორი GAIA-ს სპიკერის ან მენტორის მოთხოვნას უგზავნის, თემისა და სასურველი თარიღის მითითებით.\n2. GAIA-ს გუნდი ბაზიდან შესაბამის მენტორს არჩევს. უპირატესობა ეძლევა ადგილობრივ მენტორს ან მას, ვინც რეგიონში მოგზაურობის სურვილი გამოთქვა.\n3. თუ ფიზიკური ვიზიტი ვერ ხერხდება, ინიშნება ონლაინ ჩართვა.\n\nმოთხოვნებს GAIA ყოველ ოთხშაბათს ამუშავებს, 3 მარტიდან 26 მაისამდე."}, {"id": "mentors-05", "page": "mentors", "order": 5, "title": "აქტიური მენტორის წესი", "body": "აქტიური სტატუსის შესანარჩუნებლად მენტორი სემესტრში მინიმუმ 1 აქტივობაში მონაწილეობს (ყოველ 2–3 თვეში ერთხელ).\n\n- **Tech Talk / ლექცია:** ონლაინ ან ფიზიკურად, კლუბისთვის\n- **Hands-on ვორქშოპი:** კოდის ან no-code პლატფორმების პრაქტიკული სესია\n- **ონლაინ მენტორინგი:** კლუბის გუნდთან კონსულტაცია\n- **ჰაკათონი:** მენტორად ან ჟიურის წევრად მონაწილეობა\n\nმენტორი, რომელიც ამ პერიოდში აქტივობას არ განახორციელებს, „არააქტიური / ალუმნის“ სიაში გადადის."}, {"id": "mentors-06", "page": "mentors", "order": 6, "title": "შეფასება და აღიარება", "body": "- ყოველი სესიის შემდეგ მოსწავლეები უკუკავშირს ტოვებენ\n- სემესტრის ბოლოს საუკეთესო მენტორები მადლობის სერტიფიკატს იღებენ\n- გამორჩეული მენტორები მიიღებენ წვდომას GAIA-ს ნეთვორქინგ ღონისძიებებზე და ოფიციალურ აღიარებას GAIA-ს არხებში"}], "mentors": [], "holidays": {"2027-01-01": "ახალი წელი", "2027-01-02": "ახალი წელი", "2027-01-07": "შობა", "2027-01-19": "ნათლისღება", "2027-03-03": "დედის დღე", "2027-03-08": "ქალთა დღე", "2027-04-09": "ეროვნული ერთიანობის დღე", "2027-04-30": "წითელი პარასკევი", "2027-05-01": "დიდი შაბათი", "2027-05-02": "აღდგომა", "2027-05-03": "აღდგომის ორშაბათი", "2027-05-09": "გამარჯვების დღე", "2027-05-12": "წმ. ანდრია", "2027-05-26": "დამოუკიდებლობის დღე"}, "themes": {"1": "გაშვება და ორიენტაცია", "2": "AI და მონაცემების საფუძვლები", "3": "მანქანური სწავლება პრაქტიკაში", "4": "ნეირონული ქსელები, ხედვა და ენა + რეგიონალური შეხვედრები", "5": "GenAI, ეთიკა და ჰაკათონისთვის მზადება", "6": "ჰაკათონები და სემესტრის დახურვა"}, "settings": {"schools": 10, "regions": ["სამცხე-ჯავახეთი", "სამეგრელო"]}}</script>
+<script>
+"use strict";
+const SNAP = JSON.parse(document.getElementById('seed').textContent);
+const TYPES = {
+  NL:{label:'ნიუსლეთერი'}, TECH:{label:'ონლაინ ტრენინგი'}, CAR:{label:'კარიერული შეხვედრა'},
+  INFO:{label:'საინფორმაციო შეხვედრა'}, PHYS:{label:'რეგიონალური შეხვედრა'}, HACK:{label:'ჰაკათონი'},
+  LOC:{label:'ლოკალური შეხვედრა / რეპორტი'}, MENT:{label:'მენტორების პროგრამა'}, FB:{label:'უკუკავშირი / შეფასება'}
+};
+const STATUSES = ['დაგეგმილი','მიმდინარე','შესრულებული','გადატანილი','გაუქმებული'];
+const NL_STATUSES = ['დაგეგმილი','მზადდება','მზადაა','გაგზავნილი','გადატანილი'];
+const MENTOR_STATUSES = ['აქტიური','არააქტიური / ალუმნი','განხილვაშია'];
+const MONTHS = ['იანვარი','თებერვალი','მარტი','აპრილი','მაისი','ივნისი','ივლისი','აგვისტო','სექტემბერი','ოქტომბერი','ნოემბერი','დეკემბერი'];
+const MSHORT = ['იან','თებ','მარ','აპრ','მაი','ივნ','ივლ','აგვ','სექ','ოქტ','ნოე','დეკ'];
+const WD = ['ორშ','სამ','ოთხ','ხუთ','პარ','შაბ','კვი'];
+const TASK_KINDS = {'🚀':'მომზადების დაწყება','📢':'ანონსი','⏳':'ვადა','🎯':'ღონისძიება','📝':'შეფასება / ანალიზი','👥':'მენტორთან დაკავშირება'};
+const CAL_MONTHS = [[2027,0],[2027,1],[2027,2],[2027,3],[2027,4],[2027,5]];
+
+const S = {
+  events: SNAP.events, newsletters: SNAP.newsletters, pages: SNAP.pages, mentors: SNAP.mentors, tasks: [],
+  holidays: SNAP.holidays, db: null, dbState: 'connecting', canEdit: false,
+  cal: initialMonth(), calTypes: new Set(Object.keys(TYPES).filter(t => t !== 'MENT')),
+  evType: '', evQuery: '', adminTab: 'events', taskMonth: '', taskStatus: '', taskQuery: ''
+};
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function md(src){
+  const lines = esc(src).split('\n'); let out = ''; let list = null;
+  const inline = t => t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  const close = () => { if (list){ out += `</${list}>`; list = null; } };
+  for (const raw of lines){
+    const l = raw.trim();
+    if (!l){ close(); continue; }
+    let m;
+    if ((m = l.match(/^[-•]\s+(.*)/))){ if (list !== 'ul'){ close(); out += '<ul>'; list = 'ul'; } out += `<li>${inline(m[1])}</li>`; }
+    else if ((m = l.match(/^\d+\.\s+(.*)/))){ if (list !== 'ol'){ close(); out += '<ol>'; list = 'ol'; } out += `<li>${inline(m[1])}</li>`; }
+    else { close(); out += `<p>${inline(l)}</p>`; }
+  }
+  close(); return out;
+}
+function pd(iso){ if(!iso) return null; const [y,m,d] = iso.split('-').map(Number); return new Date(y, m-1, d); }
+function iso(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function wd(d){ return WD[(d.getDay()+6)%7]; }
+function fmt(isoStr, long){ const d = pd(isoStr); if(!d) return ''; return long ? `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}, ${wd(d)}` : `${d.getDate()} ${MSHORT[d.getMonth()]}`; }
+function todayIso(){ return iso(new Date()); }
+function initialMonth(){ const t = new Date(); const i = CAL_MONTHS.findIndex(([y,m]) => y === t.getFullYear() && m === t.getMonth()); return i < 0 ? 0 : i; }
+function chip(type){ const t = TYPES[type] ? type : 'FB'; return `<span class="chip" style="background:var(--t-${t}-bg);color:var(--t-${t}-fg)">${esc(TYPES[t].label)}</span>`; }
+function statusPill(s){ const c = /შესრულ|გაგზავნ/.test(s||'') ? 'done' : /გაუქმ/.test(s||'') ? 'cancel' : /მიმდინ|მზადდ|მზადაა/.test(s||'') ? 'prog' : ''; return s ? `<span class="pill ${c}">${esc(s)}</span>` : ''; }
+function toast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2400); }
+const byDate = (a,b) => (a.date||'').localeCompare(b.date||'') || String(a.id).localeCompare(String(b.id));
+function clubEvents(){ return S.events.filter(e => (e.program||'clubs') === 'clubs').sort(byDate); }
+function mentorEvents(){ return S.events.filter(e => e.program === 'mentors').sort(byDate); }
+function nls(){ return [...S.newsletters].sort((a,b) => (a.n||0)-(b.n||0)); }
+function pagesFor(p){ return S.pages.filter(x => x.page === p).sort((a,b) => (a.order||0)-(b.order||0)); }
+
+function mtav(root){
+  /* Georgian display headings in Mtavruli (capital) letters, matching GAIA's headline style */
+  root.querySelectorAll('.hero h1, .block-title h2, .sec h2, .dialog h2, .month-h').forEach(el => {
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    for (let n = w.nextNode(); n; n = w.nextNode())
+      n.nodeValue = n.nodeValue.replace(/[\u10D0-\u10FA]/g, c => String.fromCodePoint(c.codePointAt(0) - 0x10D0 + 0x1C90));
+  });
+}
+/* ---------- navigation ---------- */
+const ROUTES = ['about','calendar','events','newsletters','mentors','admin'];
+function route(){ const h = (location.hash||'').slice(1); return ROUTES.includes(h) ? h : 'about'; }
+function renderNav(){
+  const r = route();
+  const a = (id, label, cls='') => `<a href="#${id}" class="${cls} ${r===id?'on':''}" ${r===id?'aria-current="page"':''}>${label}</a>`;
+  document.getElementById('nav').innerHTML =
+    `<div class="group">${a('about','პროგრამის შესახებ')}${a('calendar','კალენდარი')}${a('events','ღონისძიებები')}${a('newsletters','ნიუსლეთერები')}</div>
+     <span class="sep" aria-hidden="true"></span>
+     <div class="group">${a('mentors','მენტორების პროგრამა','mentor')}</div>
+     ${S.canEdit ? a('admin','ადმინ პანელი','admin') : ''}`;
+}
+function renderFoot(){
+  const note = S.dbState === 'live' ? 'მონაცემები განახლდება რეალურ დროში.' :
+    S.dbState === 'offline' ? 'ნაჩვენებია გამოქვეყნებული ასლი. ბოლო ცვლილებების სანახავად შედით claude.ai-ზე.' :
+    S.dbState === 'slow' ? 'მონაცემთა ბაზასთან კავშირი ჯერ ვერ დამყარდა — ნაჩვენებია გამოქვეყნებული ასლი.' : 'მონაცემები იტვირთება…';
+  document.getElementById('foot').innerHTML = `<img src="data:image/png;base64,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" alt="GAIA — Georgian AI Association" style="height:44px;display:block;margin-bottom:10px">სასკოლო AI კლუბები • საპილოტე სემესტრი, გაზაფხული 2027<br><span style="opacity:.75">${esc(note)}</span>`;
+}
+function render(){
+  renderNav(); renderFoot();
+  const r = route(); const app = document.getElementById('app');
+  const v = {about:viewAbout, calendar:viewCalendar, events:viewEvents, newsletters:viewNewsletters, mentors:viewMentors, admin:viewAdmin}[r];
+  app.innerHTML = v(); mtav(app);
+  document.title = {about:'GAIA სასკოლო AI კლუბები', calendar:'კალენდარი • GAIA კლუბები', events:'ღონისძიებები • GAIA კლუბები', newsletters:'ნიუსლეთერები • GAIA კლუბები', mentors:'მენტორების პროგრამა • GAIA', admin:'ადმინ პანელი • GAIA'}[r];
+}
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0,0); });
+
+/* ---------- views: about ---------- */
+function upcoming(list, n){
+  const t = todayIso(); const fut = list.filter(e => (e.end||e.date) >= t);
+  return (fut.length ? fut : list).slice(0, n);
+}
+function evCard(e){
+  return `<button class="card click" data-open-event="${esc(e.id)}">
+    ${chip(e.type)}<h3 style="font:600 15px/1.4 var(--font-body);margin:8px 0 4px">${esc(e.title)}</h3>
+    <div class="when">${esc(fmt(e.date,true))}${e.time?` • ${esc(e.time)}`:''}</div>
+    <div class="small muted">${esc(e.place||'')}</div></button>`;
+}
+function sectionsHtml(list, cls=''){
+  if (!list.length) return `<div class="empty">ამ გვერდზე სექციები ჯერ არ არის. დაამატეთ ადმინ პანელიდან.</div>`;
+  const toc = list.map((s,i) => `<a href="#" data-jump="sec-${i}">${esc(s.title)}</a>`).join('');
+  const secs = list.map((s,i) => `<section class="sec" id="sec-${i}"><h2>${esc(s.title)}</h2><div class="md">${md(s.body)}</div></section>`).join('');
+  return `<div class="page ${cls}"><nav class="toc" aria-label="სექციები">${toc}</nav><div class="sections">${secs}</div></div>`;
+}
+function viewAbout(){
+  const ev = clubEvents();
+  const count = t => ev.filter(e => t.includes(e.type)).length;
+  const stats = [[SNAP.settings.schools,'სკოლა'],[SNAP.settings.regions.length,'რეგიონი: '+SNAP.settings.regions.join(', ')],
+    [S.newsletters.length,'ორშაბათის ნიუსლეთერი'],[count(['TECH','CAR']),'ონლაინ სესია'],[count(['PHYS']),'რეგიონალური შეხვედრა'],[count(['HACK'].filter(Boolean)) - ev.filter(e=>e.type==='HACK'&&/რეგისტრ/.test(e.title)).length,'ჰაკათონი']];
+  return `<section class="hero"><div class="kicker">საპილოტე სემესტრი • გაზაფხული 2027</div>
+    <h1>GAIA სასკოლო AI კლუბები</h1>
+    <p class="lead">ხელოვნური ინტელექტის კლუბების ქსელი მაღალი კლასების მოსწავლეებისთვის. მოსწავლეები კლუბს თავად მართავენ, მასწავლებელი ორგანიზებას უწევს, ტექნიკურ ცოდნას კი GAIA-ს მასალები და მენტორები აწვდიან.</p>
+    <div class="cta"><a class="pillbtn" href="#calendar">აკადემიური კალენდარი →</a><a class="pillbtn ghost" href="#mentors">მენტორების პროგრამა</a></div>
+    <div class="stats">${stats.map(([n,l]) => `<div class="stat"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join('')}</div></section>
+    <div class="block-title"><div><span class="kicker light-kicker">კალენდარი</span><h2>მომდევნო ღონისძიებები</h2></div><a href="#calendar" class="more">სრული კალენდარი</a></div>
+    <div class="upnext">${upcoming(ev.filter(e=>e.type!=='LOC'),3).map(evCard).join('')}</div>
+    <div style="height:40px"></div>
+    <div class="block-title"><div><span class="kicker light-kicker">პროგრამა</span><h2>მიზნები და შემადგენელი ნაწილები</h2></div></div>
+    ${sectionsHtml(pagesFor('about'))}`;
+}
+
+/* ---------- views: calendar ---------- */
+function calItems(){
+  const items = [];
+  for (const e of S.events){
+    if (!S.calTypes.has(e.type)) continue;
+    if ((e.program||'clubs') === 'mentors' && !S.calTypes.has('MENT')) continue;
+    items.push({date:e.date, kind:'ev', id:e.id, type:e.type, label:e.title, time:e.time});
+    if (e.end && e.end !== e.date) items.push({date:e.end, kind:'ev', id:e.id, type:e.type, label:'ვადა: '+e.title});
+  }
+  if (S.calTypes.has('NL')) for (const n of S.newsletters) items.push({date:n.date, kind:'nl', id:n.id, type:'NL', label:`ნიუსლეთერი #${n.n}`});
+  return items;
+}
+function viewCalendar(){
+  const [y,m] = CAL_MONTHS[S.cal];
+  const first = new Date(y,m,1); const start = new Date(y,m,1-((first.getDay()+6)%7));
+  const items = calItems(); const byDay = {};
+  for (const it of items) (byDay[it.date] ||= []).push(it);
+  const t = todayIso();
+  let cells = WD.map(w => `<div class="dow">${w}</div>`).join('');
+  for (let i = 0; i < 42; i++){
+    const d = new Date(start); d.setDate(start.getDate()+i);
+    if (i >= 35 && d.getMonth() !== m) break;
+    const k = iso(d); const hol = S.holidays[k];
+    const evs = (byDay[k]||[]).map(it => `<button class="ev" style="background:var(--t-${it.type}-bg);color:var(--t-${it.type}-fg)" ${it.kind==='nl'?`data-open-nl="${esc(it.id)}"`:`data-open-event="${esc(it.id)}"`} title="${esc(it.label)}">${it.time?`<b>${esc(it.time.split('–')[0])}</b> `:''}${esc(it.label)}</button>`).join('');
+    cells += `<div class="day ${d.getMonth()!==m?'out':''} ${hol&&d.getMonth()===m?'hol':''} ${k===t?'today':''}"><span class="dn">${d.getDate()}</span>${hol&&d.getMonth()===m?`<span class="hol-name">${esc(hol)}</span>`:''}${d.getMonth()===m?evs:''}</div>`;
+  }
+  const tabs = CAL_MONTHS.map(([yy,mm],i) => `<button data-cal="${i}" class="${i===S.cal?'on':''}">${MONTHS[mm]}</button>`).join('');
+  const toggles = Object.keys(TYPES).map(k => `<button class="chip ftog ${S.calTypes.has(k)?'on':''}" data-ftype="${k}" style="background:var(--t-${k}-bg);color:var(--t-${k}-fg)" aria-pressed="${S.calTypes.has(k)}">${esc(TYPES[k].label)}</button>`).join('');
+  return `<section class="hero slim"><div class="kicker">აკადემიური კალენდარი</div><h1>${MONTHS[m]} ${y}</h1>
+    <p class="lead">${esc(SNAP.themes[String(m+1)]||'')}</p></section>
+    <div class="calbar"><div class="mtabs" role="tablist">${tabs}</div>
+      <div class="mtabs"><button data-calstep="-1" aria-label="წინა თვე">←</button><button data-calstep="1" aria-label="შემდეგი თვე">→</button></div></div>
+    <div class="cal-scroll"><div class="cal">${cells}</div></div>
+    <div class="legend"><span class="small muted" style="margin-right:4px">ფილტრი:</span>${toggles}<span class="chip" style="background:var(--hol-bg);color:var(--hol-fg)">დასვენების დღე</span></div>
+    <p class="small muted">დააჭირეთ ღონისძიებას დეტალების სანახავად. მენტორების პროგრამის ღონისძიებები ცალკეა და ფილტრით ჩაირთვება.</p><div style="height:40px"></div>`;
+}
+
+/* ---------- views: events ---------- */
+function eventRow(e){
+  const d = pd(e.date);
+  return `<button class="erow" data-open-event="${esc(e.id)}">
+    <div class="dateblk"><b>${d?d.getDate():''}</b><span>${d?MSHORT[d.getMonth()]+' • '+wd(d):''}</span></div>
+    <div>${chip(e.type)}<h3>${esc(e.title)}</h3>
+      <div class="meta">${e.time?`<span>${esc(e.time)}</span>`:''}${e.end&&e.end!==e.date?`<span>${esc(fmt(e.end))}-მდე</span>`:''}<span>${esc(e.format||'')}</span><span>${esc(e.place||'')}</span></div>
+      <div class="small muted" style="margin-top:4px">${esc(e.audience||'')}</div></div>
+    <div class="side">${statusPill(e.status)}</div></button>`;
+}
+function groupByMonth(list, rowFn){
+  let out = '', cur = '';
+  for (const e of list){ const d = pd(e.date); const key = d ? `${MONTHS[d.getMonth()]} ${d.getFullYear()}` : 'თარიღის გარეშე';
+    if (key !== cur){ if (cur) out += '</div>'; out += `<div class="month-h">${esc(key)}</div><div class="elist">`; cur = key; }
+    out += rowFn(e); }
+  return out + (cur ? '</div>' : '');
+}
+function viewEvents(){
+  const q = S.evQuery.toLowerCase();
+  const list = clubEvents().filter(e => (!S.evType || e.type === S.evType) && (!q || [e.title,e.description,e.place,e.audience,e.id].join(' ').toLowerCase().includes(q)));
+  const opts = Object.keys(TYPES).filter(k => k!=='NL' && k!=='MENT').map(k => `<option value="${k}" ${S.evType===k?'selected':''}>${esc(TYPES[k].label)}</option>`).join('');
+  return `<section class="hero slim"><div class="kicker">სასკოლო კლუბები</div><h1>ღონისძიებები</h1>
+    <p class="lead">ყველა ღონისძიება თარიღის მიხედვით: ონლაინ ტრენინგები, საინფორმაციო და რეგიონალური შეხვედრები, ჰაკათონები, რეპორტების ვადები და გამოკითხვები.</p></section>
+    <div class="searchbar"><label class="sr" for="evq" style="position:absolute;left:-9999px">ძიება</label><input id="evq" type="search" placeholder="ძიება სათაურით, ადგილით…" value="${esc(S.evQuery)}">
+      <label for="evt" style="position:absolute;left:-9999px">ტიპი</label><select id="evt"><option value="">ყველა ტიპი</option>${opts}</select>
+      <span class="small muted">${list.length} ღონისძიება</span></div>
+    ${list.length ? groupByMonth(list, eventRow) : '<div class="empty">ამ ფილტრით ღონისძიება ვერ მოიძებნა.</div>'}<div style="height:48px"></div>`;
+}
+
+/* ---------- views: newsletters ---------- */
+function viewNewsletters(){
+  const list = nls();
+  return `<section class="hero slim"><div class="kicker">ყოველ ორშაბათს</div><h1>ნიუსლეთერები</h1>
+    <p class="lead">ყოველი ნომერი შეიცავს კვირის რესურსს, საოლიმპიადო კურსის მოდულს და მომდევნო ღონისძიებების ანონსებს. კლუბი მასალას ერთად გადის ლოკალურ შეხვედრაზე.</p></section>
+    <div class="elist" style="margin-top:24px">${list.map(n => `<article class="nl"><div class="num">#${esc(n.n)}</div><div>
+      <div class="when">${esc(fmt(n.date,true))} ${statusPill(n.status)}</div><h3>${esc(n.title)}</h3>
+      <div class="small muted">${esc(n.theme||'')}</div>
+      <dl><dt>კვირის რესურსი</dt><dd>${esc(n.resource||'')}</dd><dt>საოლიმპიადო მასალა</dt><dd>${esc(n.olympiad||'—')}</dd>
+      <dt>ანონსები</dt><dd>${esc(n.announcements||'')}</dd>${n.link?`<dt>ბმული</dt><dd><a href="${esc(n.link)}" target="_blank" rel="noopener">გახსნა</a> <span class="small muted">${esc(n.link)}</span></dd>`:''}
+      ${n.note?`<dt>შენიშვნა</dt><dd>${esc(n.note)}</dd>`:''}</dl></div></article>`).join('') || '<div class="empty">ნიუსლეთერები ჯერ არ არის.</div>'}</div><div style="height:48px"></div>`;
+}
+
+/* ---------- views: mentors ---------- */
+function viewMentors(){
+  const ms = S.mentors.filter(m => (m.status||'აქტიური') === 'აქტიური').sort((a,b) => String(a.name).localeCompare(String(b.name)));
+  const me = mentorEvents();
+  const steps = me.map(e => `<button class="step card click" data-open-event="${esc(e.id)}" style="border-left:3px solid var(--mentor)"><div class="when">${esc(fmt(e.date,true))}</div><div style="font-weight:600;margin-top:4px">${esc(e.title)}</div></button>`).join('');
+  const grid = ms.length ? `<div class="mgrid">${ms.map(m => `<article class="mcard"><h3>${esc(m.name)}</h3><div class="small" style="color:var(--mentor);font-weight:600">${esc(m.expertise||'')}</div>
+      <p class="small muted" style="margin:6px 0">${esc(m.bio||'')}</p><div class="meta"><span>${esc(m.format||'')}</span><span>${esc(m.region||'')}</span></div>
+      ${m.link?`<div class="small" style="margin-top:6px"><a href="${esc(m.link)}" target="_blank" rel="noopener">პროფილი</a></div>`:''}</article>`).join('')}</div>`
+    : `<div class="empty">მენტორების სია გამოქვეყნდება 1 მარტს, შერჩევის დასრულების შემდეგ.</div>`;
+  return `<section class="hero mentor"><div class="kicker">დამოუკიდებელი პროგრამა</div><h1>GAIA მენტორების პროგრამა</h1>
+    <p class="lead">პროფესიონალთა მოხალისეობრივი ქსელი, რომელიც ტექნოლოგიურ ექსპერტებს საქართველოს სკოლებთან აკავშირებს. პროგრამა სასკოლო კლუბებისგან ცალკე მუშაობს და GAIA-ს სხვა ინიციატივებსაც ემსახურება.</p>
+    <div class="stats"><div class="stat"><b>${ms.length}</b><span>აქტიური მენტორი</span></div><div class="stat"><b>1</b><span>მინიმალური აქტივობა სემესტრში</span></div><div class="stat"><b>${me.length}</b><span>პროგრამის ეტაპი</span></div></div></section>
+    <div class="block-title"><div><span class="kicker light-kicker">2027</span><h2>პროგრამის ეტაპები</h2></div></div>
+    ${steps ? `<div class="steps">${steps}</div>` : '<div class="empty">ეტაპები ჯერ არ არის დამატებული.</div>'}
+    <div class="block-title" style="margin-top:36px"><div><span class="kicker light-kicker">ქსელი</span><h2>ჩვენი მენტორები</h2></div></div>${grid}
+    <div style="height:40px"></div><div class="block-title"><div><span class="kicker light-kicker">წესები</span><h2>როგორ მუშაობს პროგრამა</h2></div></div>${sectionsHtml(pagesFor('mentors'), 'mentor')}`;
+}
+
+/* ---------- detail dialogs ---------- */
+function openModal(html){ const m = document.getElementById('modal'); const dl = document.getElementById('dialog'); dl.innerHTML = html; mtav(dl); m.hidden = false; const f = m.querySelector('input,select,textarea,button'); f && f.focus(); }
+function closeModal(){ document.getElementById('modal').hidden = true; }
+function showEvent(id){
+  const e = S.events.find(x => x.id === id); if (!e) return;
+  const rows = [['თარიღი', fmt(e.date,true) + (e.end&&e.end!==e.date?` — ${fmt(e.end,true)}`:'')],['დრო',e.time],['ფორმატი',e.format],['ადგილი',e.place],['აუდიტორია',e.audience],['სპიკერი / მენტორი',e.speaker],['პასუხისმგებელი',e.owner],['KPI / მეტრიკა',e.kpi],['სტატუსი',e.status],['ID',e.id]].filter(r => r[1]);
+  openModal(`<button class="x" data-close aria-label="დახურვა">×</button>${chip(e.type)}<h2>${esc(e.title)}</h2>
+    <div class="md">${md(e.description||'')}</div><dl class="kv">${rows.map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+    ${S.canEdit?`<div class="form-actions"><span></span><button class="btn" data-edit="events" data-id="${esc(e.id)}">რედაქტირება</button></div>`:''}`);
+}
+function showNl(id){
+  const n = S.newsletters.find(x => x.id === id); if (!n) return;
+  openModal(`<button class="x" data-close aria-label="დახურვა">×</button>${chip('NL')}<h2>#${esc(n.n)} ${esc(n.title)}</h2>
+    <dl class="kv"><dt>გაგზავნა</dt><dd>${esc(fmt(n.date,true))}</dd><dt>თემა</dt><dd>${esc(n.theme)}</dd><dt>კვირის რესურსი</dt><dd>${esc(n.resource)}</dd>
+    <dt>საოლიმპიადო მასალა</dt><dd>${esc(n.olympiad)}</dd><dt>ანონსები</dt><dd>${esc(n.announcements)}</dd>${n.link?`<dt>ბმული</dt><dd><a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.link)}</a></dd>`:''}<dt>სტატუსი</dt><dd>${esc(n.status)}</dd></dl>
+    ${S.canEdit?`<div class="form-actions"><span></span><button class="btn" data-edit="newsletters" data-id="${esc(n.id)}">რედაქტირება</button></div>`:''}`);
+}
+
+/* ---------- admin ---------- */
+const SCHEMA = {
+  events: {label:'ღონისძიებები', title:'ღონისძიება', fields:[
+    {k:'id',l:'ID (ლათინური, მაგ. TECH-08)',t:'id'},{k:'program',l:'პროგრამა',t:'select',o:[['clubs','სასკოლო კლუბები'],['mentors','მენტორების პროგრამა']]},
+    {k:'type',l:'ტიპი',t:'select',o:Object.keys(TYPES).filter(k=>k!=='NL').map(k=>[k,TYPES[k].label])},{k:'title',l:'სათაური',t:'text',req:1},
+    {k:'date',l:'თარიღი',t:'date',req:1},{k:'end',l:'დასრულება / ვადა',t:'date'},{k:'time',l:'დრო',t:'text'},{k:'format',l:'ფორმატი',t:'text'},
+    {k:'place',l:'ადგილი',t:'text'},{k:'audience',l:'აუდიტორია',t:'text'},{k:'description',l:'აღწერა',t:'textarea'},{k:'speaker',l:'სპიკერი / მენტორი',t:'text'},
+    {k:'owner',l:'პასუხისმგებელი',t:'text'},{k:'kpi',l:'KPI / მეტრიკა',t:'text'},{k:'status',l:'სტატუსი',t:'select',o:STATUSES.map(s=>[s,s])}],
+    cols:[['date','თარიღი',e=>fmt(e.date)],['type','ტიპი',e=>chip(e.type),1],['title','სათაური'],['program','პროგრამა',e=>e.program==='mentors'?'მენტორები':'კლუბები'],['status','სტატუსი',e=>statusPill(e.status),1]],
+    sort:byDate},
+  newsletters: {label:'ნიუსლეთერები', title:'ნიუსლეთერი', fields:[
+    {k:'n',l:'ნომერი',t:'number',req:1},{k:'date',l:'გაგზავნის თარიღი',t:'date',req:1},{k:'title',l:'სათაური',t:'text',req:1},{k:'theme',l:'თვის თემა',t:'text'},
+    {k:'resource',l:'კვირის რესურსი (მოკლე აღწერა)',t:'textarea'},{k:'olympiad',l:'საოლიმპიადო მასალა',t:'text'},{k:'announcements',l:'ანონსები',t:'textarea'},
+    {k:'link',l:'ბმული',t:'text'},{k:'status',l:'სტატუსი',t:'select',o:NL_STATUSES.map(s=>[s,s])},{k:'note',l:'შენიშვნა',t:'text'}],
+    cols:[['n','№'],['date','თარიღი',n=>fmt(n.date)],['title','სათაური'],['olympiad','საოლიმპიადო მასალა'],['status','სტატუსი',n=>statusPill(n.status),1]],
+    sort:(a,b)=>(a.n||0)-(b.n||0)},
+  pages: {label:'გვერდების ტექსტები', title:'სექცია', fields:[
+    {k:'page',l:'გვერდი',t:'select',o:[['about','პროგრამის შესახებ'],['mentors','მენტორების პროგრამა']]},{k:'order',l:'რიგითობა',t:'number',req:1},
+    {k:'title',l:'სათაური',t:'text',req:1},{k:'body',l:'ტექსტი („- “ სიისთვის, **მუქი**, ცარიელი ხაზი ახალი აბზაცისთვის)',t:'textarea',big:1}],
+    cols:[['page','გვერდი',p=>p.page==='mentors'?'მენტორები':'პროგრამის შესახებ'],['order','№'],['title','სათაური']],
+    sort:(a,b)=>String(a.page).localeCompare(String(b.page))||(a.order||0)-(b.order||0)},
+  mentors: {label:'მენტორები', title:'მენტორი', fields:[
+    {k:'name',l:'სახელი, გვარი',t:'text',req:1},{k:'expertise',l:'ექსპერტიზა',t:'text'},{k:'format',l:'ფორმატი (დისტანციური / ფიზიკური)',t:'text'},
+    {k:'region',l:'რეგიონი / ქალაქი',t:'text'},{k:'bio',l:'მოკლე ბიო',t:'textarea'},{k:'link',l:'ბმული (LinkedIn და სხვ.)',t:'text'},
+    {k:'status',l:'სტატუსი',t:'select',o:MENTOR_STATUSES.map(s=>[s,s])}],
+    cols:[['name','სახელი'],['expertise','ექსპერტიზა'],['region','რეგიონი'],['status','სტატუსი',m=>statusPill(m.status),1]],
+    sort:(a,b)=>String(a.name).localeCompare(String(b.name))},
+  tasks: {label:'თასქები', title:'თასქი', fields:[
+    {k:'date',l:'თარიღი',t:'date',req:1},{k:'kind',l:'ტიპი',t:'select',o:Object.entries(TASK_KINDS).map(([k,v])=>[k,k+' '+v])},
+    {k:'text',l:'თასქი',t:'text',req:1},{k:'ref',l:'ღონისძიება (ID)',t:'text'},{k:'owner',l:'პასუხისმგებელი',t:'text'},
+    {k:'status',l:'სტატუსი',t:'select',o:STATUSES.map(s=>[s,s])},{k:'note',l:'შენიშვნა',t:'text'}],
+    cols:[], sort:byDate}
+};
+function viewAdmin(){
+  if (!S.canEdit) return `<section class="hero"><h1>ადმინ პანელი</h1><p class="lead">ადმინ პანელი მხოლოდ საიტის მფლობელსა და რედაქტორებს უჩანს.</p></section>`;
+  const tabs = Object.entries(SCHEMA).map(([k,s]) => `<button data-atab="${k}" class="${S.adminTab===k?'on':''}">${esc(s.label)} <span class="muted small">${(S[k]||[]).length}</span></button>`).join('');
+  const dbNote = S.dbState === 'live' ? '' : `<div class="notice warn">მონაცემთა ბაზა ${S.dbState==='offline'?'ამ ხედში მიუწვდომელია':'ჯერ არ უპასუხა'}. ცვლილებების შესანახად გახსენით საიტი claude.ai-ზე, შესული ანგარიშით.</div>`;
+  return `<section class="hero slim"><div class="kicker">მართვა</div><h1>ადმინ პანელი</h1>
+    <p class="lead">აქ შეცვლილი ყველაფერი მაშინვე აისახება საიტზე ყველა მნახველისთვის. თასქები მხოლოდ ადმინისტრატორებს უჩანთ.</p></section>
+    ${dbNote}<div class="atabs" role="tablist">${tabs}</div>${S.adminTab==='tasks'?adminTasks():adminTable(S.adminTab)}
+    <div class="toolbar" style="margin-top:20px"><span class="small muted">სარეზერვო ასლი: ყველა მონაცემი JSON-ად კოპირდება.</span><button class="btn" data-export>JSON-ის კოპირება</button></div><div style="height:48px"></div>`;
+}
+function adminTable(col){
+  const s = SCHEMA[col]; const list = [...(S[col]||[])].sort(s.sort);
+  const head = s.cols.map(c => `<th>${esc(c[1])}</th>`).join('');
+  const rows = list.map(r => `<tr>${s.cols.map(c => `<td class="${c[0]==='date'||c[0]==='n'?'num':''}">${c[2] ? (c[3] ? c[2](r) : esc(c[2](r))) : esc(r[c[0]])}</td>`).join('')}
+    <td><div class="row-actions"><button class="btn sm" data-edit="${col}" data-id="${esc(r.id)}">რედაქტირება</button><button class="btn sm danger" data-del="${col}" data-id="${esc(r.id)}">წაშლა</button></div></td></tr>`).join('');
+  return `<div class="toolbar"><span class="small muted">${list.length} ჩანაწერი</span><button class="btn primary" data-new="${col}">+ ${esc(s.title)}ის დამატება</button></div>
+    <div class="tbl-wrap"><table><thead><tr>${head}<th></th></tr></thead><tbody>${rows || `<tr><td colspan="${s.cols.length+1}" class="muted">ჩანაწერები არ არის.</td></tr>`}</tbody></table></div>`;
+}
+function adminTasks(){
+  const q = S.taskQuery.toLowerCase();
+  const list = [...S.tasks].sort(byDate).filter(t => (!S.taskMonth || (t.date||'').slice(0,7) === S.taskMonth) && (!S.taskStatus || t.status === S.taskStatus) && (!q || [t.text,t.ref,t.owner].join(' ').toLowerCase().includes(q)));
+  const months = [...new Set(S.tasks.map(t => (t.date||'').slice(0,7)).filter(Boolean))].sort();
+  const done = S.tasks.filter(t => t.status === 'შესრულებული').length; const today = todayIso();
+  const overdue = S.tasks.filter(t => t.date < today && !['შესრულებული','გაუქმებული'].includes(t.status)).length;
+  const rows = list.map(t => `<tr><td class="num">${esc(fmt(t.date))}</td><td>${esc(t.kind||'')} ${esc(TASK_KINDS[t.kind]||'')}</td><td>${esc(t.text)}</td><td class="num">${esc(t.ref||'')}</td><td>${esc(t.owner||'')}</td>
+    <td><label style="position:absolute;left:-9999px" for="ts-${esc(t.id)}">სტატუსი</label><select id="ts-${esc(t.id)}" data-tstatus="${esc(t.id)}">${STATUSES.map(s => `<option ${s===t.status?'selected':''}>${s}</option>`).join('')}</select></td>
+    <td><div class="row-actions"><button class="btn sm" data-edit="tasks" data-id="${esc(t.id)}">რედაქტირება</button><button class="btn sm danger" data-del="tasks" data-id="${esc(t.id)}">წაშლა</button></div></td></tr>`).join('');
+  return `<div class="stats" style="margin:0 0 14px"><div class="stat"><b>${S.tasks.length}</b><span>სულ თასქი</span></div><div class="stat"><b>${done}</b><span>შესრულებული</span></div><div class="stat"><b style="color:${overdue?'var(--danger)':'inherit'}">${overdue}</b><span>ვადაგადაცილებული</span></div></div>
+    <div class="toolbar"><div class="l"><label for="tm" class="small muted">თვე</label><select id="tm"><option value="">ყველა</option>${months.map(m => `<option value="${m}" ${S.taskMonth===m?'selected':''}>${MONTHS[+m.slice(5)-1]} ${m.slice(0,4)}</option>`).join('')}</select>
+      <label for="tst" class="small muted">სტატუსი</label><select id="tst"><option value="">ყველა</option>${STATUSES.map(s => `<option ${S.taskStatus===s?'selected':''}>${s}</option>`).join('')}</select>
+      <label for="tq" style="position:absolute;left:-9999px">ძიება</label><input id="tq" type="search" placeholder="ძიება…" value="${esc(S.taskQuery)}"><span class="small muted">${list.length} ნაჩვენებია</span></div>
+      <button class="btn primary" data-new="tasks">+ თასქის დამატება</button></div>
+    <div class="tbl-wrap"><table><thead><tr><th>თარიღი</th><th>ტიპი</th><th>თასქი</th><th>ID</th><th>პასუხისმგებელი</th><th>სტატუსი</th><th></th></tr></thead><tbody>${rows || '<tr><td colspan="7" class="muted">თასქები არ არის.</td></tr>'}</tbody></table></div>`;
+}
+function editForm(col, id){
+  const s = SCHEMA[col]; const item = id ? (S[col]||[]).find(x => x.id === id) : null;
+  const v = item || defaults(col);
+  const f = s.fields.map(fd => {
+    const val = v[fd.k] ?? ''; const fid = `f-${fd.k}`;
+    let input;
+    if (fd.t === 'select') input = `<select id="${fid}" name="${fd.k}">${fd.o.map(([ov,ol]) => `<option value="${esc(ov)}" ${String(ov)===String(val)?'selected':''}>${esc(ol)}</option>`).join('')}</select>`;
+    else if (fd.t === 'textarea') input = `<textarea id="${fid}" name="${fd.k}" ${fd.big?'style="min-height:260px"':''}>${esc(val)}</textarea>`;
+    else if (fd.t === 'id') input = `<input id="${fid}" name="${fd.k}" value="${esc(val)}" ${item?'readonly':''} pattern="[A-Za-z0-9_.~:@+-]+" required>`;
+    else input = `<input id="${fid}" name="${fd.k}" type="${fd.t==='number'?'number':fd.t==='date'?'date':'text'}" value="${esc(val)}" ${fd.req?'required':''}>`;
+    return `<label for="${fid}">${esc(fd.l)}${input}</label>`;
+  }).join('');
+  openModal(`<button class="x" data-close aria-label="დახურვა">×</button><h2>${item?'რედაქტირება':'ახალი'}: ${esc(s.title)}</h2>
+    <form class="form" id="editForm" data-col="${col}" data-id="${esc(id||'')}">${f}<div class="err" id="formErr"></div>
+    <div class="form-actions">${item?`<button type="button" class="btn danger" data-del="${col}" data-id="${esc(id)}">წაშლა</button>`:'<span></span>'}
+    <div style="display:flex;gap:8px"><button type="button" class="btn" data-close>გაუქმება</button><button type="submit" class="btn primary">შენახვა</button></div></div></form>`);
+}
+function defaults(col){
+  if (col === 'events') return {program:'clubs', type:'TECH', status:'დაგეგმილი', date: todayIso()};
+  if (col === 'newsletters') return {n: Math.max(0,...S.newsletters.map(n => +n.n||0))+1, status:'დაგეგმილი', date: todayIso()};
+  if (col === 'pages') return {page:'about', order: Math.max(0,...S.pages.map(p => +p.order||0))+1};
+  if (col === 'mentors') return {status:'აქტიური'};
+  if (col === 'tasks') return {kind:'🚀', status:'დაგეგმილი', owner:'GAIA გუნდი', date: todayIso()};
+  return {};
+}
+async function saveForm(form){
+  const col = form.dataset.col; const s = SCHEMA[col]; const err = form.querySelector('#formErr');
+  if (!S.db){ err.textContent = 'მონაცემთა ბაზა მიუწვდომელია. გახსენით საიტი claude.ai-ზე და სცადეთ თავიდან.'; return; }
+  const data = {};
+  for (const fd of s.fields){ const el = form.elements[fd.k]; let v = el ? el.value.trim() : '';
+    if (fd.t === 'number') v = v === '' ? null : Number(v);
+    if (fd.req && (v === '' || v === null)){ err.textContent = `შეავსეთ ველი: ${fd.l}`; return; }
+    if (fd.k !== 'id') data[fd.k] = v; }
+  let id = form.dataset.id;
+  if (!id){
+    if (col === 'events'){ id = form.elements.id.value.trim(); if (!/^[A-Za-z0-9_.~:@+-]+$/.test(id)){ err.textContent = 'ID-ში გამოიყენეთ მხოლოდ ლათინური ასოები, ციფრები და „-“.'; return; }
+      if (S.events.some(e => e.id === id)){ err.textContent = 'ასეთი ID უკვე არსებობს.'; return; } }
+    else if (col === 'newsletters') id = 'NL-' + String(data.n).padStart(2,'0');
+    else id = col.slice(0,1) + '-' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+  }
+  if (col === 'newsletters' && !form.dataset.id && S.newsletters.some(n => n.id === id)){ err.textContent = 'ამ ნომრით ნიუსლეთერი უკვე არსებობს.'; return; }
+  try { form.querySelector('[type=submit]').disabled = true; await S.db.collection(col).doc(id).set(data); closeModal(); toast('შენახულია'); }
+  catch(e){ form.querySelector('[type=submit]').disabled = false; err.textContent = e && e.code === 'invalid_argument' ? 'შენახვა ვერ მოხერხდა: ამ ანგარიშს რედაქტირების უფლება არ აქვს.' : 'შენახვა ვერ მოხერხდა. სცადეთ თავიდან.'; }
+}
+function askDelete(col, id){
+  const item = (S[col]||[]).find(x => x.id === id); const name = item ? (item.title || item.name || item.text || id) : id;
+  openModal(`<h2>წავშალოთ?</h2><p>„${esc(name)}“ საიტიდან წაიშლება ყველა მნახველისთვის.</p><div class="err" id="delErr"></div>
+    <div class="form-actions"><span></span><div style="display:flex;gap:8px"><button class="btn" data-close>გაუქმება</button><button class="btn primary" style="background:var(--danger);border-color:var(--danger)" data-confirm-del="${col}" data-id="${esc(id)}">წაშლა</button></div></div>`);
+}
+async function doDelete(col, id){
+  try { await S.db.collection(col).doc(id).delete(); closeModal(); toast('წაიშალა'); }
+  catch(e){ const el = document.getElementById('delErr'); if (el) el.textContent = 'წაშლა ვერ მოხერხდა.'; }
+}
+async function setTaskStatus(id, status){
+  try { await S.db.collection('tasks').doc(id).update({status}); toast('სტატუსი განახლდა'); }
+  catch(e){ toast('ვერ შეინახა'); }
+}
+
+/* ---------- events (delegation) ---------- */
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('button, a'); if (!t) return;
+  const d = t.dataset;
+  if (d.jump){ ev.preventDefault(); document.getElementById(d.jump)?.scrollIntoView({behavior:'smooth', block:'start'}); return; }
+  if (d.openEvent) return showEvent(d.openEvent);
+  if (d.openNl) return showNl(d.openNl);
+  if ('close' in d) return closeModal();
+  if (d.cal !== undefined){ S.cal = +d.cal; return render(); }
+  if (d.calstep){ S.cal = Math.min(CAL_MONTHS.length-1, Math.max(0, S.cal + +d.calstep)); return render(); }
+  if (d.ftype){ S.calTypes.has(d.ftype) ? S.calTypes.delete(d.ftype) : S.calTypes.add(d.ftype); return render(); }
+  if (d.atab){ S.adminTab = d.atab; return render(); }
+  if (d.new) return editForm(d.new, null);
+  if (d.edit) return editForm(d.edit, d.id);
+  if (d.del) return askDelete(d.del, d.id);
+  if (d.confirmDel) return doDelete(d.confirmDel, d.id);
+  if ('export' in d){
+    const dump = JSON.stringify({events:S.events, newsletters:S.newsletters, pages:S.pages, mentors:S.mentors, tasks:S.tasks}, null, 2);
+    navigator.clipboard.writeText(dump).then(() => toast('JSON დაკოპირდა'), () => toast('კოპირება ვერ მოხერხდა'));
+  }
+});
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('submit', e => { if (e.target.id === 'editForm'){ e.preventDefault(); saveForm(e.target); } });
+document.addEventListener('input', e => {
+  if (e.target.id === 'evq'){ S.evQuery = e.target.value; const pos = e.target.selectionStart; render(); const el = document.getElementById('evq'); el.focus(); el.setSelectionRange(pos,pos); }
+  if (e.target.id === 'tq'){ S.taskQuery = e.target.value; const pos = e.target.selectionStart; render(); const el = document.getElementById('tq'); el.focus(); el.setSelectionRange(pos,pos); }
+});
+document.addEventListener('change', e => {
+  if (e.target.id === 'evt'){ S.evType = e.target.value; render(); }
+  if (e.target.id === 'tm'){ S.taskMonth = e.target.value; render(); }
+  if (e.target.id === 'tst'){ S.taskStatus = e.target.value; render(); }
+  if (e.target.dataset.tstatus) setTaskStatus(e.target.dataset.tstatus, e.target.value);
+});
+
+/* ---------- live data ---------- */
+function subscribe(col){
+  let got = false;
+  const timer = setTimeout(() => { if (!got && S.dbState === 'connecting'){ S.dbState = 'slow'; renderFoot(); } }, 10000);
+  S.db.collection(col).onSnapshot(snap => {
+    if (snap.metadata.fromCache && snap.empty) return;
+    if (!snap.metadata.fromCache){ got = true; clearTimeout(timer); }
+    S[col] = snap.docs.map(d => ({id:d.id, ...d.data()}));
+    if (got) S.dbState = 'live';
+    render();
+  }, err => { clearTimeout(timer); if (S.dbState !== 'live'){ S.dbState = 'offline'; renderFoot(); } });
+}
+render();
+(async () => {
+  if (typeof claude === 'undefined' || !claude.use){ S.dbState = 'offline'; renderFoot(); return; }
+  try { const user = await claude.use('user'); if (user && user.canEdit) S.canEdit = !!(await Promise.resolve(user.canEdit())); } catch(e){}
+  let db = null; try { db = await claude.use('db'); } catch(e){}
+  if (!db){ S.dbState = 'offline'; render(); return; }
+  S.db = db; render();
+  ['events','newsletters','pages','mentors'].forEach(subscribe);
+  if (S.canEdit) subscribe('tasks');
+})();
+</script>
+</body>
+</html>
